@@ -3,18 +3,27 @@ import random
 from PIL import Image, ImageTk
 
 names = []
-global questions_answers
-asked =[]
+asked = []
+score = 0
 
 questions_answers={
-    1: [ "Which car company sold the most cars in 2020 worldwide?", 'Ford', 'Volkswagen', 'Toyota', 'Nissan', 'Toyota', 3 ], 
-    2: [ "Which car company has the most accidents in 2020 worldwide?", 'Subaru', 'Toyota', 'Nissan', 'Honda', 'Subaru', 1 ], 
-    3: [ "What car company is worth the most?", 'Toyota', 'Tesla', 'Ferrari', 'Lamborghini', 'Tesla', 2 ], 
-}
+    1: [ "Which car company sold the most cars in 2020 worldwide?", 'Ford', 'Mazda', 'Toyota', 'Nissan', 'Toyota', 3 ], 
+    2: [ "Which car company has the car model Portofino?", 'Ferrari', 'Lotus', 'Porsche', 'Skoda', 'Ferrari', 1 ], 
+    3: [ "What car company is worth the most?", 'Toyota', 'Tesla', 'Ferrari', 'Audi', 'Tesla', 2 ], 
+    4: [ "Which f1 team has won the constrcutors championship of all time?", 'Williams', 'Mercedes', 'Ferrari', 'Red Bull', 'Ferrari', 3 ], 
+    5: [ "How many cars are there in NZ (millions)?", '4.40', '5.30', '3.60', '4.20', '4.40', 1 ], 
+    6: [ "Which is NOT a car company not owned by Volkswagen", 'Audi', 'Mercedes', 'Porsche', 'Bentley', 'Mercedes', 2 ],
+    7: [ "Which car company did Enzo Ferrari found?", 'Toyota', 'Tesla', 'Ferrari', 'Audi', 'Ferrari', 3 ], 
+    8: [ "What color is Mr Bean's car?", 'Green', 'Yellow', 'Blue', 'Red', 'Green', 1 ], 
+    9: [ "What year did NASCAR first start", '1950', '1949', '1953', '2016', '1949', 2 ],
+    10: [ "Which famous Pixar movie released in 2006", 'Toy Story', 'Cars', 'Brave', 'Up', 'Cars', 2 ],
 
+
+
+}
 def randomiser():
     global qnum
-    qnum = random.randint(1,3)
+    qnum = random.randint(1,10)
     if qnum not in asked:
         asked.append(qnum)
     elif qnum in asked:
@@ -91,7 +100,7 @@ class Quiz:
  #Code for score
    def quiz_counter(self):
       global score
-      score = 0
+      #score = 0
       scr_label=self.score_display
       choice=self.var1.get()
       if len(asked)>9:
