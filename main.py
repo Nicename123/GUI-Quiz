@@ -55,9 +55,9 @@ class Quiz1:  # The title page
         elif name.isnumeric():
             messagebox.showerror('an error has occurred!',
                                  'Name can only consist of letters!') #Error message if username consists of numbers
-        elif not name.isalpha():
-            messagebox.showerror('an error has occurred!',
-                                 'No Symbols Please! Please Try Again!') #Error message if username consists of special characters
+        elif not name.replace(' ','').isalpha():
+            messagebox.showerror('an error hs occured', 'No spaces please try again') #Error message if username contains no spaces
+        
         else:
             names.append(name)
             print (names)
@@ -65,10 +65,10 @@ class Quiz1:  # The title page
             self.user_instruction.destroy()  # Destroys the widget
             self.name_entry.destroy()  # Destroys the widget
             self.start_button.destroy()  # Destroys the widget
-            quiz_questions(window)
+            Quiz_Questions(window)
 
 
-class quiz_questions:  # Main page (actual quiz page)
+class Quiz_Questions:  # Main page (actual quiz page)
 
     def __init__(self, parent):
 
@@ -260,6 +260,7 @@ class quiz_questions:  # Main page (actual quiz page)
                 score += 0 #If answered incorrectly, score does not change
                 score_display.configure(text='The correct answer was: ' + self.qna[qnum][5]) #Lets the user know the right answer
                 self.confirm_button.config(text='confirm') #Changes the confirm button's text back to confirm
+                self.final_page() #To open final page after 10 questions, or user leaves
         else:
             if choice == 0: #If no option selected
                 self.confirm_button.config(text="Try Again, you didn't select an option") #Helps user diagnose the error
@@ -279,9 +280,9 @@ class quiz_questions:  # Main page (actual quiz page)
     def final_page(self):
         window.destroy() #Destroys the window
         name = names[0]
-        open_final_object = final()
+        open_final_object = Final()
 
-class final:
+class Final:
    
     def __init__(self):
         background_color = 'deepskyblue1'  # Background color of the page
