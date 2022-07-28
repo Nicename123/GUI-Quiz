@@ -25,7 +25,7 @@ class Quiz1:  # The title page
                                 '55', 'bold'), bg=background_color)  # Code for title of the quiz
         self.main_title.place(x=520, y=100)  # Location of title
 
-        self.var1 = IntVar()
+        self.choice_1 = IntVar()
 
         self.user_instruction = Label(window,
                 text='Please Enter Your Username Below:', font=('Times'
@@ -47,16 +47,17 @@ class Quiz1:  # The title page
             messagebox.showerror('Name is required!!',
                                  'Please enter your name!') #Error message if entrybox left blank
         elif len(name) > 15:
-            messagebox.showerror('an error has occurred!',
+            messagebox.showerror('An error has occurred!',
                                  'Username is too long, max 15 letter') #Error message if username length > 15
         elif len(name) < 3:
-            messagebox.showerror('an error has occurred!',
+            messagebox.showerror('An error has occurred!',
                                  'Username is too short, min 3 letters') #Error message if username length < 3
         elif name.isnumeric():
-            messagebox.showerror('an error has occurred!',
+            messagebox.showerror('An error has occurred!',
                                  'Name can only consist of letters!') #Error message if username consists of numbers
         elif not name.replace(' ','').isalpha():
-            messagebox.showerror('an error hs occured', 'No spaces please try again') #Error message if username contains no spaces
+            messagebox.showerror('An error hs occured', 
+                                 'No spaces please try again') #Error message if username contains no spaces
         
         else:
             names.append(name)
@@ -184,47 +185,47 @@ class Quiz_Questions:  # Main page (actual quiz page)
                                     font=('Tw Cen MT', '18', 'bold'))  # Code for the question that'll be asked
         self.question_label.place(x=50, y=50)  # Code for location
 
-        self.var1 = IntVar()
+        self.choice_1 = IntVar()
 
-        self.rb1 = Radiobutton(  # Code for option 1 button
+        self.choice1 = Radiobutton(  # Code for option 1 button
             window,
             text=self.qna[qnum][1],
             font=('Helvetica', '30'),
             bg='red',
             value=1,
-            variable=self.var1,
+            variable=self.choice_1,
             )
-        self.rb1.place(x=600, y=400)  # Code for location
+        self.choice1.place(x=600, y=400)  # Code for location
 
-        self.rb2 = Radiobutton(  # Code for option 2 button
+        self.choice2 = Radiobutton(  # Code for option 2 button
             window,
             text=self.qna[qnum][2],
             font=('Helvetica', '30'),
             bg='blue',
             value=2,
-            variable=self.var1,
+            variable=self.choice_1,
             )
-        self.rb2.place(x=200, y=400)  # Code for location
+        self.choice2.place(x=200, y=400)  # Code for location
 
-        self.rb3 = Radiobutton(  # Code for option 3 button
+        self.choice3 = Radiobutton(  # Code for option 3 button
             window,
             text=self.qna[qnum][3],
             font=('Helvetica', '30'),
             bg='yellow',
             value=3,
-            variable=self.var1,
+            variable=self.choice_1,
             )
-        self.rb3.place(x=600, y=200)  # Code for location
+        self.choice3.place(x=600, y=200)  # Code for location
 
-        self.rb4 = Radiobutton(  # Code for option 4 button
+        self.choice4 = Radiobutton(  # Code for option 4 button
             window,
             text=self.qna[qnum][4],
             font=('Helvetica', '30'),
             bg='limegreen',
             value=4,
-            variable=self.var1,
+            variable=self.choice_1,
             )
-        self.rb4.place(x=200, y=200)  # Code for location
+        self.choice4.place(x=200, y=200)  # Code for location
 
         self.confirm_button = Button(window, text='Confrim',
                 bg='forestgreen', command=self.score_mechanics)  # Code for confirm button to confirmm user's chosen answer
@@ -239,17 +240,17 @@ class Quiz_Questions:  # Main page (actual quiz page)
 
     def qna_setup(self):
         random_order()
-        self.var1.set(0)
+        self.choice_1.set(0)
         self.question_label.config(text=self.qna[qnum][0])
-        self.rb1.config(text=self.qna[qnum][1])
-        self.rb2.config(text=self.qna[qnum][2])
-        self.rb3.config(text=self.qna[qnum][3])
-        self.rb4.config(text=self.qna[qnum][4])
+        self.choice1.config(text=self.qna[qnum][1])
+        self.choice2.config(text=self.qna[qnum][2])
+        self.choice3.config(text=self.qna[qnum][3])
+        self.choice4.config(text=self.qna[qnum][4])
 
     def score_mechanics(self):
         global score
         score_display = self.score_display
-        choice = self.var1.get() #Gets what answer the user chose
+        choice = self.choice_1.get() #Gets what answer the user chose
         if len(asked) > 9: #To work out if it is the fianl question, so the final page can open
             if choice == self.qna[qnum][6]: #Checks if it is the right answer
                score += 1 #Increases the score by 1 point if question is answered correctly
@@ -264,7 +265,7 @@ class Quiz_Questions:  # Main page (actual quiz page)
         else:
             if choice == 0: #If no option selected
                 self.confirm_button.config(text="Try Again, you didn't select an option") #Helps user diagnose the error
-                choice = self.var1.get() #Gets what answer the user chose
+                choice = self.choice_1.get() #Gets what answer the user chose
             else:
                 if choice == self.qna[qnum][6]: #Checks if it is the right answer
                     score += 1 #Increases the score by 1 point
