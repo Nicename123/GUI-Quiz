@@ -57,7 +57,7 @@ class Quiz1:  # The title page
                                  'Name can only consist of letters!') #Error message if username consists of numbers
         elif not name.replace(' ','').isalpha():
             messagebox.showerror('An error hs occured', 
-                                 'No spaces please try again') #Error message if username contains no spaces
+                                 'No spaces please try again') #Error message if username contains spaces
         
         else:
             names.append(name)
@@ -238,14 +238,14 @@ class Quiz_Questions:  # Main page (actual quiz page)
         self.leave.place(x=900, y=10)  # Code for location
 
 
-    def qna_setup(self):
-        random_order()
-        self.choice_1.set(0)
-        self.question_label.config(text=self.qna[qnum][0])
-        self.choice1.config(text=self.qna[qnum][1])
-        self.choice2.config(text=self.qna[qnum][2])
-        self.choice3.config(text=self.qna[qnum][3])
-        self.choice4.config(text=self.qna[qnum][4])
+    def qna_setup(self): #Question setup
+        random_order() #Randomises question order
+        self.choice_1.set(0) #Makes the value 0
+        self.question_label.config(text=self.qna[qnum][0]) #Changes the question label to question being asked
+        self.choice1.config(text=self.qna[qnum][1]) #Radio button become answer option 1
+        self.choice2.config(text=self.qna[qnum][2]) #Radio button become answer option 2
+        self.choice3.config(text=self.qna[qnum][3]) #Radio button become answer option 3
+        self.choice4.config(text=self.qna[qnum][4]) #Radio button become answer option 4
 
     def score_mechanics(self):
         global score
@@ -283,7 +283,7 @@ class Quiz_Questions:  # Main page (actual quiz page)
         name = names[0]
         open_final_object = Final()
 
-class Final:
+class Final: #Fianl Page (summarises user score)
    
     def __init__(self):
         background_color = 'deepskyblue1'  # Background color of the page
